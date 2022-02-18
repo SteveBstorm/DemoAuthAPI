@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[AppRole]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	RoleName VARCHAR(20) NOT NULL
+)
