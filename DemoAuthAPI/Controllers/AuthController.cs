@@ -32,7 +32,9 @@ namespace DemoAuthAPI.Controllers
             {
                 UserClient currentUser = new UserClient(_repo.Login(f.Email, f.Password));
                 string token = _jwt.GenerateJWT(currentUser);
-                return Ok(token);
+                UserWithToken r = new UserWithToken(currentUser);
+                r.Token = token;
+                return Ok(r);
             }
             catch(Exception e)
             {

@@ -32,8 +32,9 @@ namespace DemoAuthAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            services.AddScoped<IUserRepo, UserService>();
+            services.AddSwaggerGen();
+            //services.AddScoped<IUserRepo, UserService>();
+            services.AddSingleton<IUserRepo, FakeUserService>();
             services.AddScoped<JWTService>();
 
             services.AddCors();
@@ -66,6 +67,9 @@ namespace DemoAuthAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
+
             }
 
             app.UseHttpsRedirection();
